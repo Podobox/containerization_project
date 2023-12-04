@@ -12,6 +12,8 @@ After building up the image, use this command to run the image correctly:
 
 ## 3. Build the docker's image angular
 Before to build the image, think to modify the file `angular-16-crud-example-master/src/app/services/tutorial.service.ts`
-Replace the line _const baseUrl = 'http://mon-projet.com/api/tutorials';_ by _const baseUrl = 'http://localhost:8080/api/tutorials';_
+Replace the line 
+const baseUrl = 'http://mon-projet.com/api/tutorials';
+by const baseUrl = 'http://localhost:8080/api/tutorials';
 
-You can now acces to your application using the URL * *http://localhost:ANGULAR_PORT* *
+You can now acces to your application using the URL http://localhost:ANGULAR_PORT
