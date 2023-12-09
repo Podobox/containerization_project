@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  some-mysql:
+    image: mysql:8.2.0
+    container_name: some-mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - springbootapp
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+    volumes:
+      - mysqlvol:/var/lib/mysql 
+    
+  springboot:
+    image: podobox/springboot:1.0
+    container_name: springboot
+    ports:
+      - "8080:8080"
+    networks:
+      - springbootapp
+    environment:
+      SPRING_PROFILES_ACTIVE: conteneur
+    depends_on:
+      - some-mysql
+  angular:
+    image: podobox/angular:1.0
+    container_name: angular
+    ports:
+      - "20020:80"
+    networks:
+      - springbootapp
+    depends_on:
+      - springboot
+
+volumes:
+  mysqlvol:
+
+networks:
+  springbootapp:
+    driver: bridge
